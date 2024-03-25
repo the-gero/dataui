@@ -44,7 +44,7 @@ const ChartThree: React.FC = () => {
       let series = [partially_vaccinated_until_yesterday, fully_vaccinated_until_yesterday, vaccines_remaining];
 
       // Options object for ApexCharts
-      let options = {
+      let options: ApexOptions = {
         chart: {
           type: 'pie',
           height: "100%",
@@ -97,11 +97,11 @@ const ChartThree: React.FC = () => {
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
           <h5 className="text-xl font-semibold text-black dark:text-white">
-            Visitors Analytics
+            Population Vaccination Analysis
           </h5>
         </div>
         <div>
-          <div className="relative z-20 inline-block">
+          {/* <div className="relative z-20 inline-block">
             <select
               name=""
               id=""
@@ -134,7 +134,7 @@ const ChartThree: React.FC = () => {
                 />
               </svg>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
 

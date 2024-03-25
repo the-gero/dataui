@@ -7,8 +7,9 @@ import ChatCard from '../../components/Chat/ChatCard';
 import MapOne from '../../components/Maps/MapOne';
 import TableOne from '../../components/Tables/TableOne';
 import DefaultLayout from '../../layout/DefaultLayout';
+import ChartFour from '../../components/Charts/ChartFour';
 
-const ECommerce: React.FC = () => {
+const Covid: React.FC = () => {
   return (
     <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -102,14 +103,15 @@ const ECommerce: React.FC = () => {
         <ChartOne />
         <ChartThree />
         <ChartTwo />
+        <ChartFour />
         {/* <MapOne /> */}
-        <div className="col-span-12 xl:col-span-8">
+        <div className="col-span-12">
           <TableOne />
         </div>
-        <ChatCard />
+        {/* <ChatCard /> */}
       </div>
     </DefaultLayout>
   );
 };
 
-export default ECommerce;
+export default Covid;

@@ -51,7 +51,7 @@ const Header = (props: {
 
           <Link className="block flex-shrink-0 lg:hidden" to="/">
             {/* <img src={LogoIcon} alt="Logo" /> */}
-            <h4 className="text-title-md font-bold text-black dark:text-white">
+            <h4 className="text-title-md font-bold text-white">
               IndHealthStat
             </h4>
           </Link>

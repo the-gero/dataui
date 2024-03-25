@@ -213,3 +213,11 @@ span.flatpickr-weekday,
 [x-cloak] {
   display: none !important;
 }
+
+input{
+  @apply w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white
+}
+
+button{
+  @apply inline-flex items-center justify-center bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10
+}

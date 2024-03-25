@@ -4,6 +4,8 @@ import BrandTwo from '../../images/brand/brand-02.svg';
 import BrandThree from '../../images/brand/brand-03.svg';
 import BrandFour from '../../images/brand/brand-04.svg';
 import BrandFive from '../../images/brand/brand-05.svg';
+import GenericTable from '../../common/Table';
+import { useEffect, useState } from 'react';
 
 const brandData: BRAND[] = [
   {
@@ -49,77 +51,74 @@ const brandData: BRAND[] = [
 ];
 
 const TableOne = () => {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    fetch("https://api.vaccinate-india.in/api/metadata/states", {
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "api-key": "bWVzYXJlYWwxMjNlc3RhdGU=",
+        "sec-ch-ua": "\"Google Chrome\";v=\"123\", \"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"123\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+      },
+      "referrer": "https://vaccinate-india.in/",
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "body": null,
+      "method": "GET",
+      "mode": "cors",
+      "credentials": "omit"
+    }).then((res) => {
+      return res.json()
+    }
+    ).then(res => setData(res))
+  }, []
+  )
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Top Channels
+        State Wise Data
       </h4>
 
-      <div className="flex flex-col">
-        <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
-          <div className="p-2.5 xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Source
-            </h5>
-          </div>
-          <div className="p-2.5 text-center xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Visitors
-            </h5>
-          </div>
-          <div className="p-2.5 text-center xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Revenues
-            </h5>
-          </div>
-          <div className="hidden p-2.5 text-center sm:block xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Sales
-            </h5>
-          </div>
-          <div className="hidden p-2.5 text-center sm:block xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Conversion
-            </h5>
-          </div>
-        </div>
-
-        {brandData.map((brand, key) => (
-          <div
-            className={`grid grid-cols-3 sm:grid-cols-5 ${
-              key === brandData.length - 1
-                ? ''
-                : 'border-b border-stroke dark:border-strokedark'
-            }`}
-            key={key}
-          >
-            <div className="flex items-center gap-3 p-2.5 xl:p-5">
-              <div className="flex-shrink-0">
-                <img src={brand.logo} alt="Brand" />
-              </div>
-              <p className="hidden text-black dark:text-white sm:block">
-                {brand.name}
-              </p>
-            </div>
-
-            <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-black dark:text-white">{brand.visitors}K</p>
-            </div>
-
-            <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-meta-3">${brand.revenues}</p>
-            </div>
-
-            <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-black dark:text-white">{brand.sales}</p>
-            </div>
-
-            <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-meta-5">{brand.conversion}%</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <GenericTable
+        columns={[
+          {
+            header: 'State Name',
+            accessorKey: 'state_name',
+          },
+          {
+            header: 'Population',
+            accessorKey: 'population',
+          },
+          {
+            header: 'Eligible Population',
+            accessorKey: 'eligible_population',
+          },
+          {
+            header: 'Total Vaccines Administered',
+            accessorKey: 'vaccines_total_administered_mohfw',
+          },
+          {
+            header: 'Dose 1 Administered',
+            accessorKey: 'vaccines_dose1_administered_mohfw',
+          },
+          {
+            header: 'Dose 2 Administered',
+            accessorKey: 'vaccines_dose2_administered_mohfw',
+          },
+          {
+            header: 'Booster 1 Administered',
+            accessorKey: 'vaccines_booster1_administered_mohfw',
+          },
+          {
+            header: 'Last Updated',
+            accessorKey: 'last_updated',
+            cell: (row) => new Date(row?.getValue()).toDateString()
+            
+          },
+        ]}
+        data={data}
+      />
     </div>
   );
 };

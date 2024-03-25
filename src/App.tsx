@@ -3,19 +3,14 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
-import Calendar from './pages/Calendar';
-import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
-import FormElements from './pages/Form/FormElements';
-import FormLayout from './pages/Form/FormLayout';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
+import Covid from './pages/Dashboard/Covid';
+import { Chart as ChartJS, registerables } from "chart.js";
+import DPFCalculator from './components/DPFCalculator';
+import DefaultLayout from './layout/DefaultLayout';
+import PredictForm from './components/PredictForm';
 import Tables from './pages/Tables';
-import Alerts from './pages/UiElements/Alerts';
-import Buttons from './pages/UiElements/Buttons';
-
+import HnD from './pages/Dashboard/HND/HnD';
+ChartJS.register(...registerables);
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -38,7 +33,27 @@ function App() {
           element={
             <>
               <PageTitle title="IndHealthStat - Dashboard" />
-              <ECommerce />
+              <Covid />
+            </>
+          }
+        />
+        <Route
+          index
+          path='/hnd'
+          element={
+            <>
+              <PageTitle title="IndHealthStat - Heart and Diabeties" />
+              <HnD />
+            </>
+          }
+        />
+        <Route
+          index
+          path='/predict'
+          element={
+            <>
+              <PageTitle title="IndHealthStat - Predict" />
+              <PredictForm />
             </>
           }
         />
