@@ -47,9 +47,9 @@ function PredictForm() {
     )
     return (
         <DefaultLayout>
-            <h4>
+            <h1 className='text-2xl font-bold text-center'>
                 Heart Attack Prediction
-            </h4>
+            </h1>
             <form className='grid grid-cols-2 gap-2' method='POST' onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target)
