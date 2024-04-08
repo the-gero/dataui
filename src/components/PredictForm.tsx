@@ -145,6 +145,7 @@ function PredictForm() {
                     <label htmlFor="oldpeak">ST depression</label>
                     <input
                         type="number"
+                        step={0.1}
                         id="oldpeak"
                         name="oldpeak"
                         placeholder="ST depression, typically in [0-6.2]"
