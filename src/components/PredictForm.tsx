@@ -47,6 +47,9 @@ function PredictForm() {
     )
     return (
         <DefaultLayout>
+            <h4>
+                Heart Attack Prediction
+            </h4>
             <form className='grid grid-cols-2 gap-2' method='POST' onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target)
@@ -62,106 +65,118 @@ function PredictForm() {
                 })
                 return false
             }}>
-
-                <div>
-                    <label htmlFor="pregnancies">Pregnancies:</label>
-                    <input required type="number"
-                        min={0} name="pregnancies" value={pregnancies} onChange={(e) => setPregnancies(e.target.value)} />
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Your age.." />
                 </div>
-                <div>
-                    <label htmlFor="glucose">Glucose:</label>
-                    <input required type="number"
-                        min={0} name="glucose" value={glucose} onChange={(e) => setGlucose(e.target.value)} />
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="sex">Sex</label>
+                    <select id="sex" name="sex">
+                        <option selected>----select option----</option>
+                        <option value={1}>Male</option>
+                        <option value={0}>Female</option>
+                    </select>
                 </div>
-                <div>
-                    <label htmlFor="bloodpressure">Blood Pressure:</label>
-                    <input required type="number"
-                        min={0} name="bloodpressure" value={bloodPressure} onChange={(e) => setBloodPressure(e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="skinthickness">Skin Thickness:</label>
-                    <input required type="number"
-                        min={0} name="skinthickness" value={skinThickness} onChange={(e) => setSkinThickness(e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="insulin">Insulin:</label>
-                    <input required type="number"
-                        min={0} name="insulin" value={insulin} onChange={(e) => setInsulin(e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="bmi">BMI:</label>
-                    <input required type="number"
-                        min={0} name="bmi" value={bmi} onChange={(e) => setBMI(e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="age">Age:</label>
-                    <input required type="number"
-                        min={0} name="age" value={age} onChange={(e) => setAge(e.target.value)} />
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="cp">Chest Pain Type</label>
+                    <select id="cp" name="cp">
+                        <option selected>----select option----</option>
+                        <option value={0}>Typical Angina</option>
+                        <option value={1}>Atypical Angina</option>
+                        <option value={2}>Non-anginal Pain</option>
+                        <option value={3}>Asymtomatic</option>
+                    </select>
                 </div>
 
-
-                <label>
-                    Parents:
-                    <input required
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="trestbps">Resting Blood Pressure</label>
+                    <input
                         type="number"
-                        min={0}
-                        name="parents"
-                        value={familyHistory.parents}
-                        onChange={handleInputChange}
+                        id="trestbps"
+                        name="trestbps"
+                        placeholder="A number in range [94-200] mmHg"
                     />
-                </label>
-
-                <label>
-                    Siblings:
-                    <input required
-                        type="number"
-                        min={0}
-                        name="siblings"
-                        value={familyHistory.siblings}
-                        onChange={handleInputChange}
-                    />
-                </label>
-
-                <label>
-                    Grandparents:
-                    <input required
-                        type="number"
-                        min={0}
-                        name="grandparents"
-                        value={familyHistory.grandparents}
-                        onChange={handleInputChange}
-                    />
-                </label>
-
-                <label>
-                    Aunts/Uncles:
-                    <input required
-                        type="number"
-                        min={0}
-                        name="auntsUncles"
-                        value={familyHistory.auntsUncles}
-                        onChange={handleInputChange}
-                    />
-                </label>
-
-                <label>
-                    Nieces/Nephews:
-                    <input required
-                        type="number"
-                        min={0}
-                        name="niecesNephews"
-                        value={familyHistory.niecesNephews}
-                        onChange={handleInputChange}
-                    />
-                </label>
-
-
-                <div>
-                    <label htmlFor="diabetespedigreefunction">Diabetes Pedigree Function:</label>
-                    <input type="number"
-                        min={0} name="diabetespedigreefunction" value={dpfScore} readOnly /* onChange={(e) => setDPFScore(e.target.value)} */ />
                 </div>
-                <br />
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="chol">Serum Cholesterol</label>
+                    <input
+                        type="number"
+                        id="chol"
+                        name="chol"
+                        placeholder="A number in range [126-564] mg/dl"
+                    />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="fbs">Fasting Blood Sugar</label>
+                    <select id="fbs" name="fbs">
+                        <option selected>----select option----</option>
+                        <option value={1}>Greater than 120 mg/dl</option>
+                        <option value={0}>Less than 120 mg/dl</option>
+                    </select>
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="restecg">Resting ECG Results</label>
+                    <select id="restecg" name="restecg">
+                        <option selected>----select option----</option>
+                        <option value={0}>Normal</option>
+                        <option value={1}>Having ST-T wave abnormality</option>
+                        <option value={2}>Probable or definite left ventricular hypertrophy</option>
+                    </select>
+                </div>
+
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="thalach">Max Heart Rate </label>
+                    <input
+                        type="number"
+                        id="thalach"
+                        name="thalach"
+                        placeholder="A number in range [71-202] bpm"
+                    />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="exang">Exercise-induced Angina</label>
+                    <select id="exang" name="exang">
+                        <option selected>----select option----</option>
+                        <option value={1}>Yes</option>
+                        <option value={0}>No</option>
+                    </select>
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="oldpeak">ST depression</label>
+                    <input
+                        type="number"
+                        id="oldpeak"
+                        name="oldpeak"
+                        placeholder="ST depression, typically in [0-6.2]"
+                    />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="slope">slope of the peak exercise ST segment</label>
+                    <select id="slope" name="slope">
+                        <option selected>----select option----</option>
+                        <option value={0}>Upsloping</option>
+                        <option value={1}>Flat</option>
+                        <option value={2}>Downsloping</option>
+                    </select>
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="ca">Number of Major vessels</label>
+                    <input type="number" id="ca" name="ca" placeholder="Typically in [0-4]" />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="thal">Thalassemia</label>
+                    <select id="thal" name="thal">
+                        <option selected>----select option----</option>
+                        <option value={0}>Normal</option>
+                        <option value={1}>Fixed Defect</option>
+                        <option value={2}>Reversible Defect</option>
+                    </select>
+                </div>
+
+                {/* <input type="submit" className="my-cta-button" defaultValue="Predict" /> */}
+
+
+
                 <div className='flex justify-center my-2 items-end col-span-full'>
                     <button>Predict</button>
                 </div>
