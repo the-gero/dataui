@@ -5006,7 +5006,7 @@ const DiabetesDeathsChart = () => {
             }
         },
         title: {
-            text: 'Diabetes Mellitus Deaths in 2019 (Age: 15-19 years) - Grouped by Location'
+            text: 'Diabetes Mellitus Deaths in 2019 - Grouped by Location'
         }
     };
 

@@ -4978,7 +4978,7 @@ const HeartAttackDeathsChart = () => {
             height: 400
         },
         title: {
-            text: 'Heart Attack Deaths in 2019 (Age: 15-19 years)'
+            text: 'Heart Attack Deaths in 2019'
         },
         tooltip: {
             enabled: true,
