@@ -2,55 +2,36 @@ import { useEffect, useState } from 'react'
 import DefaultLayout from '../layout/DefaultLayout'
 
 function PredictForm() {
-
-
-    const [pregnancies, setPregnancies] = useState(0);
-    const [glucose, setGlucose] = useState(0);
-    const [bloodPressure, setBloodPressure] = useState(0);
-    const [skinThickness, setSkinThickness] = useState(0);
-    const [insulin, setInsulin] = useState(0);
-    const [bmi, setBMI] = useState(0);
-    const [age, setAge] = useState(0);
-
-    const [familyHistory, setFamilyHistory] = useState({
-        parents: 0,
-        siblings: 0,
-        grandparents: 0,
-        auntsUncles: 0,
-        niecesNephews: 0
-    });
-    const [dpfScore, setDPFScore] = useState(0);
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFamilyHistory({ ...familyHistory, [name]: parseInt(value) });
-    };
-
-    const calculateDPF = () => {
-        const weights = {
-            parents: 2,
-            siblings: 1,
-            grandparents: 1,
-            auntsUncles: 0.5,
-            niecesNephews: 0.5
-        };
-
-        let totalScore = 0;
-        for (const relationship in familyHistory) {
-            totalScore += familyHistory[relationship] * weights[relationship];
-        }
-        setDPFScore(totalScore);
-    };
-    useEffect(() => {
-        calculateDPF()
-    }, [familyHistory]
-    )
     return (
         <DefaultLayout>
             <h1 className='text-2xl font-bold text-center'>
                 Heart Attack Prediction
             </h1>
-            <form className='grid grid-cols-2 gap-2' method='POST' onSubmit={(e) => {
+            <p className='text-center'>(Note:This model is 82.67% accurate)</p>
+            <hr className='my-2' />
+            {/* <input type="text" onChange={(e) => {
+                const values = JSON.parse(e.target.value)
+
+                document.querySelector("#preform #age").value = values[0]
+                document.querySelector("#preform #sex").value = values[1]
+                document.querySelector("#preform #cp").value = values[2]
+                document.querySelector("#preform #trestbps").value = values[3]
+                document.querySelector("#preform #chol").value = values[4]
+                document.querySelector("#preform #fbs").value = values[5]
+                document.querySelector("#preform #restecg").value = values[6]
+                document.querySelector("#preform #thalach").value = values[7]
+                document.querySelector("#preform #exang").value = values[8]
+                document.querySelector("#preform #oldpeak").value = values[9]
+                document.querySelector("#preform #slope").value = values[10]
+                document.querySelector("#preform #ca").value = values[11]
+                document.querySelector("#preform #thal").value = values[12]
+            }} /> */}
+            <form className='grid grid-cols-2 gap-2' id='preform' method='POST' onChange={(e) => {
+                const formData = new FormData(document.querySelector("#preform"))
+                const data = [formData.get("age"), formData.get("sex"), formData.get("cp"), formData.get("trestbps"), formData.get("chol"), formData.get("fbs"), formData.get("restecg"), formData.get("thalach"), formData.get("exang"), formData.get("oldpeak"), formData.get("slope"), formData.get("ca"), formData.get("thal")]
+                console.clear()
+                console.log(data)
+            }} onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target)
                 fetch("http://127.0.0.1:5000/predict", {
