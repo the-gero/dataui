@@ -41,7 +41,7 @@ function PredictForm() {
                     const result = document.querySelector("#result")
                     result?.childNodes?.forEach(e => e.remove())
                     const b = document.createElement("b")
-                    b.append(`Prediction is: ${e.prediction}`)
+                    b.append(`Prediction is: ${e.prediction == 1 ? "You have Chances of Heart Disease." : "You DON'T chances have Heart Disease."}`)
                     result?.appendChild(b)
                 })
                 return false
